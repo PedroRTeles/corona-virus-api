@@ -11,6 +11,7 @@ Esse se propõe a buscar todos os dados do corona virus disponibilizado pelo gov
 
 API Governo:
 
+https://covid.saude.gov.br/
 https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalRegiaoSaude
 https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalCasos
 https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalRegiaoUf
