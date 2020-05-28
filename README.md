@@ -35,6 +35,7 @@ H2 -Banco de dados em memoria.
 Spring-security - Usado para a segurança na exposição dos endpoints.
 JWT- Usado para autenticação nos endpoints.
 Junit - para testes unitarios
+Mockito - Para Mock em testes
 Swagger2 - Para criação do swagger para documentação dos endpoints.
 
 ```
