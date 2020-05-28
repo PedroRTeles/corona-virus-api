@@ -34,11 +34,12 @@ JPA - Pera a persistencia dos dados incluindo spring-data e hibernate.
 H2 -Banco de dados em memoria.
 Spring-security - Usado para a segurança na exposição dos endpoints.
 JWT- Usado para autenticação nos endpoints.
+Junit - para testes unitarios
 Swagger2 - Para criação do swagger para documentação dos endpoints.
 
 ```
 Foi adotado O padrão arquitetura Clean Arch 
-Testes desenvolvidos usando BDD
+Testes desenvolvidos usando TDD
 E a API foi internacionalizada
 Durante todo o processo de desenvolvido foi se atento para que seja limpo e organizado seguindo os princípios SOLID.
 
