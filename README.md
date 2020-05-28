@@ -9,6 +9,18 @@ Corona Virus API: repositorio de uma API onde visa centralizar os dados do gover
 
 Esse se propõe a buscar todos os dados do corona virus disponibilizado pelo governo filtrando por estado/cidade e disponibilizao numa api de forma organizada e documentada.
 
+API Governo:
+
+https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalRegiaoSaude
+https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalCasos
+https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalRegiaoUf
+https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalMunicipio
+https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeralApi
+https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalSintese
+https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalEstado
+https://covid.saude.gov.br/assets/data/municipios.json
+
+
 ### Prerequisites
 
 Projeto Desenvolvido em Java 1.8+ usando Springboot.
