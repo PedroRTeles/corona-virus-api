@@ -1,6 +1,6 @@
 package dev.pedroteles.covid.entrypoint;
 
-import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusUseCaseGateway;
+import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCountryUseCaseGateway;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ public class CoranaVirusEntryPointTest {
     ArgumentCaptor<String> countryCodeCaptor;
 
     @Mock
-    CoronaVirusUseCaseGateway useCase;
+    CoronaVirusCountryUseCaseGateway useCase;
 
     CoronaVirusEntryPoint entryPoint;
 

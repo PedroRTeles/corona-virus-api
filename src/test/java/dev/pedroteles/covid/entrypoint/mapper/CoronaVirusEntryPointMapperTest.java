@@ -22,6 +22,6 @@ public class CoronaVirusEntryPointMapperTest {
         assertEquals(dto.getCountryName(), core.getCountryName());
         assertEquals(dto.getCured(), core.getCured());
         assertEquals(dto.getDeaths(), core.getDeaths());
-        assertEquals(dto.getTotal(), core.getTotal());
+        assertEquals(dto.getTotal(), core.getActive());
     }
 }

@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CountryStatus {
+public class CountryResponse {
     private String countryName;
     private int active;
-    private int deaths;
-    private int cured;
     private int confirmed;
+    private int death;
+    private int cured;
 }

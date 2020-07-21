@@ -10,7 +10,7 @@ public class CoronaVirusEntryPointMapper {
                 .countryName(countryStatus.getCountryName())
                 .cured(countryStatus.getCured())
                 .deaths(countryStatus.getDeaths())
-                .total(countryStatus.getTotal())
+                .total(countryStatus.getActive())
                 .build();
     }
 }
