@@ -2,7 +2,8 @@ package dev.pedroteles.covid.core.usecase;
 
 import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
 import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
-import dev.pedroteles.covid.domain.gateway.webclient.CoronaVirusCountryWebClient;
+import dev.pedroteles.covid.domain.gateway.webclient.CoronaVirusCountryWebClientGateway;
+import dev.pedroteles.covid.exception.CountryNotFoundException;
 import dev.pedroteles.covid.factory.CountryFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 public class CoronaVirusCountryUseCaseTest {
 
     @Mock
-    CoronaVirusCountryWebClient webClient;
+    CoronaVirusCountryWebClientGateway webClient;
 
     CoronaVirusCountryUseCase useCase;
 
@@ -30,7 +31,7 @@ public class CoronaVirusCountryUseCaseTest {
     }
 
     @Test
-    public void givenListOfDataShouldReturnCore() {
+    public void givenListOfDataShouldReturnCore() throws CountryNotFoundException {
         //given
         List<CountryResponse> countryResponseList = CountryFactory.validCountryResponseList();
 

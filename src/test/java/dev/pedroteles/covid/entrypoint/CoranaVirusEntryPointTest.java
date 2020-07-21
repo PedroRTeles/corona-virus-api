@@ -1,6 +1,9 @@
 package dev.pedroteles.covid.entrypoint;
 
+import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCountryUseCaseGateway;
+import dev.pedroteles.covid.exception.CountryNotFoundException;
+import dev.pedroteles.covid.factory.CountryFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +33,12 @@ public class CoranaVirusEntryPointTest {
     }
 
     @Test
-    public void testParameterPassToCountry() {
+    public void testParameterPassToCountry() throws CountryNotFoundException {
         //given
         String countryCode = "BR";
+        CountryStatus core = CountryFactory.validCore();
 
-        Mockito.when(useCase.getCountryStatus(countryCodeCaptor.capture())).thenReturn(null);
+        Mockito.when(useCase.getCountryStatus(countryCodeCaptor.capture())).thenReturn(core);
 
         //when
         entryPoint.getCountryStatus(countryCode);

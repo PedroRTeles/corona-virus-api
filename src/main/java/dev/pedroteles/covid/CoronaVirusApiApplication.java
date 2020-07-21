@@ -1,4 +1,4 @@
-package dev.pedroteles.covid.starter;
+package dev.pedroteles.covid;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
