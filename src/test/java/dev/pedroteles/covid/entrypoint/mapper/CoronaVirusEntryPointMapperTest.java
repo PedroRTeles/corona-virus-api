@@ -1,9 +1,13 @@
 package dev.pedroteles.covid.entrypoint.mapper;
 
+import dev.pedroteles.covid.domain.entity.usecase.CityResponse;
 import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
+import dev.pedroteles.covid.entrypoint.entity.in.CityStatusBodyDTO;
+import dev.pedroteles.covid.entrypoint.entity.out.CityStatusDTO;
 import dev.pedroteles.covid.entrypoint.entity.out.CountryStatusDTO;
 import dev.pedroteles.covid.entrypoint.entity.out.StateStatusDTO;
+import dev.pedroteles.covid.factory.CityFactory;
 import dev.pedroteles.covid.factory.CountryFactory;
 import dev.pedroteles.covid.factory.StateFactory;
 import org.junit.Test;
@@ -39,6 +43,32 @@ public class CoronaVirusEntryPointMapperTest {
         //then
         assertEquals(dto.getDeaths(), core.getTotalDeaths());
         assertEquals(dto.getStateName(), core.getStateName());
+        assertEquals(dto.getTotal(), core.getTotalCases());
+    }
+
+    @Test
+    public void testCityDtoToCore() {
+        //given
+        CityStatusBodyDTO dto = CityFactory.validRequestDto();
+
+        //when
+        String city = CoronaVirusEntryPointMapper.cityDtoToCore(dto);
+
+        //then
+        assertEquals(city, dto.getCityName());
+    }
+
+    @Test
+    public void testCityCoreToDto() {
+        //given
+        CityResponse core = CityFactory.validCore();
+
+        //when
+        CityStatusDTO dto = CoronaVirusEntryPointMapper.cityCoreToDto(core);
+
+        //then
+        assertEquals(dto.getDeaths(), core.getTotalDeaths());
+        assertEquals(dto.getCityName(), core.getCityName());
         assertEquals(dto.getTotal(), core.getTotalCases());
     }
 }

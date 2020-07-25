@@ -1,7 +1,10 @@
 package dev.pedroteles.covid.entrypoint.mapper;
 
+import dev.pedroteles.covid.domain.entity.usecase.CityResponse;
 import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
+import dev.pedroteles.covid.entrypoint.entity.in.CityStatusBodyDTO;
+import dev.pedroteles.covid.entrypoint.entity.out.CityStatusDTO;
 import dev.pedroteles.covid.entrypoint.entity.out.CountryStatusDTO;
 import dev.pedroteles.covid.entrypoint.entity.out.StateStatusDTO;
 import lombok.AccessLevel;
@@ -24,6 +27,18 @@ public class CoronaVirusEntryPointMapper {
                 .deaths(stateStatus.getTotalDeaths())
                 .stateName(stateStatus.getStateName())
                 .total(stateStatus.getTotalCases())
+                .build();
+    }
+
+    public static String cityDtoToCore(CityStatusBodyDTO bodyDTO) {
+        return bodyDTO.getCityName();
+    }
+
+    public static CityStatusDTO cityCoreToDto(CityResponse core) {
+        return CityStatusDTO.builder()
+                .cityName(core.getCityName())
+                .deaths(core.getTotalDeaths())
+                .total(core.getTotalCases())
                 .build();
     }
 }
