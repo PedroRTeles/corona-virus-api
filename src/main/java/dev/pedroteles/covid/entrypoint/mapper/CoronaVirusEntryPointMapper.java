@@ -1,7 +1,9 @@
 package dev.pedroteles.covid.entrypoint.mapper;
 
 import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
+import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.entrypoint.entity.out.CountryStatusDTO;
+import dev.pedroteles.covid.entrypoint.entity.out.StateStatusDTO;
 
 public class CoronaVirusEntryPointMapper {
     public static CountryStatusDTO coreToDto(CountryStatus countryStatus) {
@@ -11,6 +13,15 @@ public class CoronaVirusEntryPointMapper {
                 .cured(countryStatus.getCured())
                 .deaths(countryStatus.getDeaths())
                 .total(countryStatus.getActive())
+                .build();
+    }
+
+    public static StateStatusDTO stateCoreToDto(StateResponse stateStatus) {
+        return StateStatusDTO.builder()
+                .deaths(stateStatus.getTotalDeaths())
+                .stateName(stateStatus.getStateName())
+                .suspects(stateStatus.getTotalSuspects())
+                .total(stateStatus.getTotalCases())
                 .build();
     }
 }
