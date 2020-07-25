@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StateResponseDTO {
-    @JsonProperty("state")
-    private String stateName;
-    @JsonProperty("cases")
-    private int totalCases;
-    @JsonProperty("deaths")
+    @JsonProperty("nome")
+    private String name;
+    @JsonProperty("obitosAcumulado")
     private int totalDeaths;
-    @JsonProperty("suspects")
+    @JsonProperty("casosAcumulado")
     private int totalSuspects;
 }

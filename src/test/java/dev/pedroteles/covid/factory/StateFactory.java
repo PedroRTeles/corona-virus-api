@@ -9,7 +9,14 @@ public class StateFactory {
         return new EasyRandom().nextObject(StateResponse.class);
     }
 
-    public static StateResponseDTO validDto() {
-        return new EasyRandom().nextObject(StateResponseDTO.class);
+    public static StateResponseDTO[] validDto() {
+        StateResponseDTO[] responses = {
+                new StateResponseDTO("SP", 1200, 2000),
+                new StateResponseDTO("RJ", 2500, 4000),
+                new StateResponseDTO("MG", 100, 3000)
+        };
+
+        return responses;
     }
+
 }

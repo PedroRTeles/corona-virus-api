@@ -15,13 +15,12 @@ public class CoronaVirusStateWebClient implements CoronaVirusStateWebClientGatew
     @Override
     public StateResponse getStateStatus(String state) throws StateNotFoundException {
         RestTemplate restTemplate = new RestTemplate();
-        String baseUrl = "https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/";
-        baseUrl = baseUrl.concat(state);
+        String baseUrl = "https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalEstado";
 
-        ResponseEntity<StateResponseDTO> response = restTemplate.getForEntity(baseUrl, StateResponseDTO.class);
+        ResponseEntity<StateResponseDTO[]> response = restTemplate.getForEntity(baseUrl, StateResponseDTO[].class);
 
         if(response.getBody() != null) {
-            StateResponse core = CoronaVirusStateWebClientMapper.dtoToCore(response.getBody());
+            StateResponse core = CoronaVirusStateWebClientMapper.dtoToCore(response.getBody(), state);
 
             if(core.getStateName() != null)
                 return core;

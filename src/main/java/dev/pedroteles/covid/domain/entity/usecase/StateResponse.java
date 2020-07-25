@@ -13,5 +13,4 @@ public class StateResponse {
     private String stateName;
     private int totalCases;
     private int totalDeaths;
-    private int totalSuspects;
 }

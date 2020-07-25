@@ -20,7 +20,6 @@ public class CoronaVirusEntryPointMapper {
         return StateStatusDTO.builder()
                 .deaths(stateStatus.getTotalDeaths())
                 .stateName(stateStatus.getStateName())
-                .suspects(stateStatus.getTotalSuspects())
                 .total(stateStatus.getTotalCases())
                 .build();
     }

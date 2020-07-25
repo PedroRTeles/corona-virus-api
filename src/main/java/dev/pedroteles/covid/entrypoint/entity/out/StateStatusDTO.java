@@ -17,6 +17,4 @@ public class StateStatusDTO {
     private int total;
     @JsonProperty("deaths")
     private int deaths;
-    @JsonProperty("suspects")
-    private int suspects;
 }

@@ -43,7 +43,6 @@ public class CoronaVirusStateUseCaseTest {
         StateResponse status = useCase.getStateStatus(state);
 
         //then
-        assertEquals(status.getTotalSuspects(), core.getTotalSuspects());
         assertEquals(status.getTotalDeaths(), core.getTotalDeaths());
         assertEquals(status.getTotalCases(), core.getTotalCases());
         assertEquals(status.getStateName(), core.getStateName());
