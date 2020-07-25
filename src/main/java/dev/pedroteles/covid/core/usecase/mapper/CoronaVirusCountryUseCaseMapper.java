@@ -1,4 +1,4 @@
-package dev.pedroteles.covid.core.usecase;
+package dev.pedroteles.covid.core.usecase.mapper;
 
 import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
 import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;

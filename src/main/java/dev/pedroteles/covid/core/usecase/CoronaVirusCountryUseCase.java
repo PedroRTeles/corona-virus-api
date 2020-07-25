@@ -1,5 +1,6 @@
 package dev.pedroteles.covid.core.usecase;
 
+import dev.pedroteles.covid.core.usecase.mapper.CoronaVirusCountryUseCaseMapper;
 import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
 import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCountryUseCaseGateway;
