@@ -8,6 +8,7 @@ import dev.pedroteles.covid.entrypoint.entity.out.CountryStatusDTO;
 import dev.pedroteles.covid.entrypoint.entity.out.StateStatusDTO;
 import dev.pedroteles.covid.entrypoint.mapper.CoronaVirusEntryPointMapper;
 import dev.pedroteles.covid.exception.CountryNotFoundException;
+import dev.pedroteles.covid.exception.StateNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,8 +41,12 @@ public class CoronaVirusEntryPoint {
 
     @GetMapping("/state/{state}")
     public ResponseEntity<StateStatusDTO> getStateStats(@PathVariable("state") String state) {
-        StateResponse core = stateUseCase.getStateStatus(state);
+        try {
+            StateResponse core = stateUseCase.getStateStatus(state);
 
-        return ResponseEntity.ok(CoronaVirusEntryPointMapper.stateCoreToDto(core));
+            return ResponseEntity.ok(CoronaVirusEntryPointMapper.stateCoreToDto(core));
+        } catch (StateNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

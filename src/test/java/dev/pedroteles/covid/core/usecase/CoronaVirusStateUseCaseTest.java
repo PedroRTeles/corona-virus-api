@@ -2,6 +2,7 @@ package dev.pedroteles.covid.core.usecase;
 
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.domain.gateway.webclient.CoronaVirusStateWebClientGateway;
+import dev.pedroteles.covid.exception.StateNotFoundException;
 import dev.pedroteles.covid.factory.StateFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class CoronaVirusStateUseCaseTest {
     }
 
     @Test
-    public void givenListOfDataShouldReturnCore() {
+    public void givenListOfDataShouldReturnCore() throws StateNotFoundException {
         //given
         StateResponse core = StateFactory.validCore();
         String state = "sp";

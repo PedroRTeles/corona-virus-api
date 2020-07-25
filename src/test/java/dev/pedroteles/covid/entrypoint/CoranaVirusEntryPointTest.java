@@ -5,6 +5,7 @@ import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCountryUseCaseGateway;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusStateUseCaseGateway;
 import dev.pedroteles.covid.exception.CountryNotFoundException;
+import dev.pedroteles.covid.exception.StateNotFoundException;
 import dev.pedroteles.covid.factory.CountryFactory;
 import dev.pedroteles.covid.factory.StateFactory;
 import org.junit.Before;
@@ -55,7 +56,7 @@ public class CoranaVirusEntryPointTest {
     }
 
     @Test
-    public void testParameterPassToState() {
+    public void testParameterPassToState() throws StateNotFoundException {
         //given
         String state = "sp";
         StateResponse core = StateFactory.validCore();
