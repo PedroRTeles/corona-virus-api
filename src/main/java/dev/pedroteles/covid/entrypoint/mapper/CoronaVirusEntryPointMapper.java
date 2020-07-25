@@ -4,7 +4,10 @@ import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.entrypoint.entity.out.CountryStatusDTO;
 import dev.pedroteles.covid.entrypoint.entity.out.StateStatusDTO;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CoronaVirusEntryPointMapper {
     public static CountryStatusDTO coreToDto(CountryStatus countryStatus) {
         return CountryStatusDTO.builder()

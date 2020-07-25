@@ -3,7 +3,10 @@ package dev.pedroteles.covid.webclient.mapper;
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.exception.StateNotFoundException;
 import dev.pedroteles.covid.webclient.entity.in.StateResponseDTO;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CoronaVirusStateWebClientMapper {
     public static StateResponse dtoToCore(StateResponseDTO[] body, String state) throws StateNotFoundException {
         StateResponseDTO dto = getStateData(body, state);
