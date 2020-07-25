@@ -1,7 +1,7 @@
 package dev.pedroteles.covid.entrypoint.mapper;
 
 import dev.pedroteles.covid.domain.entity.usecase.CityResponse;
-import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
+import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.entrypoint.entity.in.CityStatusBodyDTO;
 import dev.pedroteles.covid.entrypoint.entity.out.CityStatusDTO;
@@ -19,7 +19,7 @@ public class CoronaVirusEntryPointMapperTest {
     @Test
     public void testCountryCoreToDto() {
         //given
-        CountryStatus core = CountryFactory.validCore();
+        CountryResponse core = CountryFactory.validCore();
 
         //when
         CountryStatusDTO dto = CoronaVirusEntryPointMapper.coreToDto(core);
@@ -28,7 +28,7 @@ public class CoronaVirusEntryPointMapperTest {
         assertEquals(dto.getConfirmed(), core.getConfirmed());
         assertEquals(dto.getCountryName(), core.getCountryName());
         assertEquals(dto.getCured(), core.getCured());
-        assertEquals(dto.getDeaths(), core.getDeaths());
+        assertEquals(dto.getDeaths(), core.getDeath());
         assertEquals(dto.getTotal(), core.getActive());
     }
 

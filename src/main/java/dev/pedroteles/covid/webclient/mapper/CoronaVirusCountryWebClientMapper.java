@@ -1,31 +1,25 @@
 package dev.pedroteles.covid.webclient.mapper;
 
 import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
+import dev.pedroteles.covid.exception.CountryNotFoundException;
 import dev.pedroteles.covid.webclient.entity.in.CountryResponseDTO;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.val;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CoronaVirusCountryWebClientMapper {
-    public static List<CountryResponse> dtoToCore(CountryResponseDTO[] body) {
-        List<CountryResponse> countryResponseList = new ArrayList<>();
+    public static CountryResponse dtoToCore(CountryResponseDTO[] body) throws CountryNotFoundException {
+        if(body.length == 0)
+            throw new CountryNotFoundException();
 
-        for (CountryResponseDTO countryResponseDTO : body) {
-            CountryResponse country = CountryResponse.builder()
-                    .countryName(countryResponseDTO.getCountryName())
-                    .active(countryResponseDTO.getActive())
-                    .confirmed(countryResponseDTO.getConfirmed())
-                    .cured(countryResponseDTO.getCured())
-                    .death(countryResponseDTO.getDeath())
-                    .build();
+        CountryResponseDTO countryResponseDTO = body[body.length - 1];
 
-            countryResponseList.add(country);
-        }
-
-        return countryResponseList;
+        return CountryResponse.builder()
+                .countryName(countryResponseDTO.getCountryName())
+                .active(countryResponseDTO.getActive())
+                .confirmed(countryResponseDTO.getConfirmed())
+                .cured(countryResponseDTO.getCured())
+                .death(countryResponseDTO.getDeath())
+                .build();
     }
 }

@@ -1,33 +1,44 @@
 package dev.pedroteles.covid.webclient.mapper;
 
 import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
+import dev.pedroteles.covid.exception.CountryNotFoundException;
 import dev.pedroteles.covid.factory.CountryFactory;
 import dev.pedroteles.covid.webclient.entity.in.CountryResponseDTO;
 import org.junit.Test;
 
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class CoronaVirusCountryWebClientMapperTest {
 
     @Test
-    public void testArrayDtoToCore() {
+    public void testArrayDtoToCore() throws CountryNotFoundException {
         //given
         CountryResponseDTO[] dtoArray = CountryFactory.validDtoArray();
 
         //when
-        List<CountryResponse> coreList = CoronaVirusCountryWebClientMapper.dtoToCore(dtoArray);
+        CountryResponse core = CoronaVirusCountryWebClientMapper.dtoToCore(dtoArray);
 
         //then
-        CountryResponse firstCore = coreList.get(0);
-        CountryResponseDTO firstDto = dtoArray[0];
+        CountryResponseDTO lastDto = dtoArray[dtoArray.length - 1];
 
-        assertEquals(coreList.size(), dtoArray.length);
-        assertEquals(firstCore.getActive(), firstDto.getActive());
-        assertEquals(firstCore.getConfirmed(), firstDto.getConfirmed());
-        assertEquals(firstCore.getCountryName(), firstDto.getCountryName());
-        assertEquals(firstCore.getCured(), firstDto.getCured());
-        assertEquals(firstCore.getDeath(), firstDto.getDeath());
+        assertEquals(core.getActive(), lastDto.getActive());
+        assertEquals(core.getConfirmed(), lastDto.getConfirmed());
+        assertEquals(core.getCountryName(), lastDto.getCountryName());
+        assertEquals(core.getCured(), lastDto.getCured());
+        assertEquals(core.getDeath(), lastDto.getDeath());
+    }
+
+
+    @Test(expected = CountryNotFoundException.class)
+    public void testDtoToCoreInvalidCountry() throws CountryNotFoundException {
+        //given
+        CountryResponseDTO[] dto = CountryFactory.invalidCountryDto();
+
+        //when
+        CoronaVirusCountryWebClientMapper.dtoToCore(dto);
+
+        //then
+        fail();
     }
 }

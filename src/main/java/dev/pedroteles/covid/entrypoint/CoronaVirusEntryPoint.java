@@ -1,7 +1,7 @@
 package dev.pedroteles.covid.entrypoint;
 
 import dev.pedroteles.covid.domain.entity.usecase.CityResponse;
-import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
+import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCityUseCaseGateway;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCountryUseCaseGateway;
@@ -37,7 +37,7 @@ public class CoronaVirusEntryPoint {
     @GetMapping("/country/{country}")
     public ResponseEntity<CountryStatusDTO> getCountryStatus(@PathVariable("country") String country) {
         try {
-            CountryStatus status = countryUseCase.getCountryStatus(country);
+            CountryResponse status = countryUseCase.getCountryStatus(country);
 
             return ResponseEntity.ok(CoronaVirusEntryPointMapper.coreToDto(status));
         } catch (CountryNotFoundException e) {

@@ -1,7 +1,6 @@
 package dev.pedroteles.covid.factory;
 
 import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
-import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
 import dev.pedroteles.covid.webclient.entity.in.CountryResponseDTO;
 import org.jeasy.random.EasyRandom;
 
@@ -9,8 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CountryFactory {
-    public static CountryStatus validCore() {
-        return new EasyRandom().nextObject(CountryStatus.class);
+    public static CountryResponse validCore() {
+        return new EasyRandom().nextObject(CountryResponse.class);
     }
 
     public static List<CountryResponse> validCountryResponseList() {
@@ -49,5 +48,9 @@ public class CountryFactory {
         }
 
         return dtoArray;
+    }
+
+    public static CountryResponseDTO[] invalidCountryDto() {
+        return new CountryResponseDTO[]{};
     }
 }

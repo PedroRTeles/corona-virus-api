@@ -32,7 +32,7 @@ public class CoronaVirusStateUseCaseTest {
     }
 
     @Test
-    public void givenListOfDataShouldReturnCore() throws StateNotFoundException {
+    public void givenValidStateShouldReturnCore() throws StateNotFoundException {
         //given
         StateResponse core = StateFactory.validCore();
         String state = "sp";

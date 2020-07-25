@@ -1,24 +1,28 @@
 package dev.pedroteles.covid.core.usecase;
 
 import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
-import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
 import dev.pedroteles.covid.domain.gateway.webclient.CoronaVirusCountryWebClientGateway;
 import dev.pedroteles.covid.exception.CountryNotFoundException;
 import dev.pedroteles.covid.factory.CountryFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CoronaVirusCountryUseCaseTest {
+
+    @Captor
+    ArgumentCaptor<String> countryCaptor;
 
     @Mock
     CoronaVirusCountryWebClientGateway webClient;
@@ -31,19 +35,18 @@ public class CoronaVirusCountryUseCaseTest {
     }
 
     @Test
-    public void givenListOfDataShouldReturnCore() throws CountryNotFoundException {
+    public void givenValidCountryShouldReturnCore() throws CountryNotFoundException {
         //given
-        List<CountryResponse> countryResponseList = CountryFactory.validCountryResponseList();
+        String country = "br";
+        CountryResponse core = CountryFactory.validCore();
 
-        Mockito.when(webClient.getCountryStatus(anyString())).thenReturn(countryResponseList);
+        Mockito.when(webClient.getCountryStatus(countryCaptor.capture())).thenReturn(core);
 
         //when
-        CountryStatus status = useCase.getCountryStatus(anyString());
+        CountryResponse status = useCase.getCountryStatus(country);
 
         //then
-        assertEquals(10, status.getConfirmed());
-        assertEquals(2, status.getDeaths());
-        assertEquals(5, status.getCured());
-        assertEquals(3, status.getActive());
+        assertEquals(country, countryCaptor.getValue());
+        verify(webClient, times(1)).getCountryStatus(anyString());
     }
 }

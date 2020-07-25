@@ -1,7 +1,7 @@
 package dev.pedroteles.covid.entrypoint;
 
 import dev.pedroteles.covid.domain.entity.usecase.CityResponse;
-import dev.pedroteles.covid.domain.entity.usecase.CountryStatus;
+import dev.pedroteles.covid.domain.entity.usecase.CountryResponse;
 import dev.pedroteles.covid.domain.entity.usecase.StateResponse;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCityUseCaseGateway;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCountryUseCaseGateway;
@@ -58,7 +58,7 @@ public class CoranaVirusEntryPointTest {
     public void testParameterPassToCountry() throws CountryNotFoundException {
         //given
         String countryCode = "BR";
-        CountryStatus core = CountryFactory.validCore();
+        CountryResponse core = CountryFactory.validCore();
 
         when(countryUseCase.getCountryStatus(countryCodeCaptor.capture())).thenReturn(core);
 
