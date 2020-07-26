@@ -7,6 +7,9 @@ import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCityUseCaseGateway
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusCountryUseCaseGateway;
 import dev.pedroteles.covid.domain.gateway.usecase.CoronaVirusStateUseCaseGateway;
 import dev.pedroteles.covid.entrypoint.entity.in.CityStatusBodyDTO;
+import dev.pedroteles.covid.entrypoint.entity.out.CityStatusDTO;
+import dev.pedroteles.covid.entrypoint.entity.out.CountryStatusDTO;
+import dev.pedroteles.covid.entrypoint.entity.out.StateStatusDTO;
 import dev.pedroteles.covid.exception.CityNotFoundException;
 import dev.pedroteles.covid.exception.CountryNotFoundException;
 import dev.pedroteles.covid.exception.StateNotFoundException;
@@ -21,6 +24,8 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -100,5 +105,44 @@ public class CoranaVirusEntryPointTest {
         //then
         assertEquals(dto.getCityName(), cityCaptor.getValue());
         verify(cityUseCase, times(1)).getCityStatus(anyString());
+    }
+
+    @Test
+    public void whenPassInvalidCountryShouldReturnNotFound() throws CountryNotFoundException {
+        String countryCode = "GG";
+
+        when(countryUseCase.getCountryStatus(anyString())).thenThrow(CountryNotFoundException.class);
+
+        //when
+        ResponseEntity<CountryStatusDTO> response = entryPoint.getCountryStatus(countryCode);
+
+        //then
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void whenPassInvalidStateShouldReturnNotFound() throws StateNotFoundException {
+        String state = "ZH";
+
+        when(stateUseCase.getStateStatus(anyString())).thenThrow(StateNotFoundException.class);
+
+        //when
+        ResponseEntity<StateStatusDTO> response = entryPoint.getStateStats(state);
+
+        //then
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void whenPassInvalidCityShouldReturnNotFound() throws CityNotFoundException {
+        CityStatusBodyDTO requestDto = CityFactory.validRequestDto();
+
+        when(cityUseCase.getCityStatus(anyString())).thenThrow(CityNotFoundException.class);
+
+        //when
+        ResponseEntity<CityStatusDTO> response = entryPoint.getCityStatus(requestDto);
+
+        //then
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }
