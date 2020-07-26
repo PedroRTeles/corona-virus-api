@@ -1,4 +1,4 @@
 package dev.pedroteles.covid.exception;
 
-public class CityNotFoundException extends Throwable {
+public class CityNotFoundException extends Exception {
 }
